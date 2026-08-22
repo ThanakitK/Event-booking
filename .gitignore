@@ -1,0 +1,78 @@
+# =====================
+# OS
+# =====================
+.DS_Store
+Thumbs.db
+
+# =====================
+# IDE / Editor
+# =====================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+.claude/
+.implement_plan/
+
+# =====================
+# Environment
+# =====================
+.env
+.env.*
+!.env.example
+
+# =====================
+# Logs
+# =====================
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =====================
+# Go
+# =====================
+bin/
+dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+coverage.out
+
+# Go workspace
+go.work
+go.work.sum
+
+# =====================
+# Node / Vue
+# =====================
+node_modules/
+dist/
+.cache/
+.parcel-cache/
+
+# =====================
+# Build / Temp
+# =====================
+tmp/
+temp/
+build/
+
+# =====================
+# Database / Secrets
+# =====================
+*.db
+*.sqlite
+*.sqlite3
+*.pem
+*.key
+**/config.yaml
+**/role_permissions.yaml
+
+config/firebase-service-account.json
