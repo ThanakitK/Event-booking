@@ -9,6 +9,6 @@ func CorsConfig() cors.Config {
 		AllowOrigins:     Env.App.Cors,
 		AllowMethods:     "GET, POST, PUT, DELETE, OPTIONS",
 		AllowHeaders:     "Origin, Content-Type, Accept, Authorization, apikey",
-		AllowCredentials: true,
+		AllowCredentials: false,
 	}
 }
