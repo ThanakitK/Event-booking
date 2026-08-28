@@ -24,11 +24,17 @@ type MetaModel struct {
 
 // error message
 const (
-	CreateEventError        = "Create Event Fail"
+	CreateEventError = "Create Event Fail"
+	UpdateEventError = "Update Event Fail"
+	DeleteEventError = "Delete Event Fail"
+
 	InvalidRequestBodyError = "invalid request body"
+	InvalidEventIDError     = "invalid event id"
 )
 
 // success message
 const (
 	CreateEventSuccess = "Create Event Success"
+	UpdateEventSuccess = "Update Event Success"
+	DeleteEventSuccess = "Delete Event Success"
 )

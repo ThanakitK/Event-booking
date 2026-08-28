@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -39,5 +40,31 @@ func (r *eventRepo) CreateEvent(payload models.RepoCreateEventModel) error {
 	}
 
 	_, err := r.db.Collection(r.collection).InsertOne(ctx, doc)
+	return err
+}
+func (r *eventRepo) UpdateEvent(id primitive.ObjectID, payload models.RepoUpdateEventModel) error {
+	log := logger.GetLogger()
+	log.Info("Update Event")
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	now := time.Now()
+	payload.UpdatedAt = &now
+
+	_, err := r.db.Collection(r.collection).UpdateOne(
+		ctx,
+		bson.M{"_id": id},
+		bson.M{"$set": payload},
+	)
+	return err
+}
+
+func (r *eventRepo) DeleteEvent(id primitive.ObjectID) error {
+	log := logger.GetLogger()
+	log.Info("Delete Event")
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	_, err := r.db.Collection(r.collection).DeleteOne(ctx, bson.M{"_id": id})
 	return err
 }

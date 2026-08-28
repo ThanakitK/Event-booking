@@ -35,7 +35,9 @@ func main() {
 	api := app.Group("/api")
 
 	// events
-	api.Post("/event/create", eventHand.CreateEvent)
+	api.Post("/event", eventHand.CreateEvent)
+	api.Put("/event/:id", eventHand.UpdateEvent)
+	api.Delete("/event/:id", eventHand.DeleteEvent)
 
 	log.Fatal(app.Listen(":" + config.Env.App.Port))
 }
