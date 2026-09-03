@@ -24,13 +24,16 @@ func main() {
 	app.Use(cors.New(config.CorsConfig()))
 
 	// Repositories
-	eventRepo := repositories.NewEventRepository(masterDB, "event")
+	eventRepo := repositories.NewEventRepository(masterDB, "events")
+	userRepo := repositories.NewUserRepository(masterDB, "users")
 
 	// Services
 	eventService := services.NewEventService(eventRepo)
+	userService := services.NewUserService(userRepo)
 
 	// Handlers
 	eventHand := handlers.NewEventHandler(eventService)
+	userHand := handlers.NewUserHandler(userService)
 
 	api := app.Group("/api")
 
@@ -38,6 +41,9 @@ func main() {
 	api.Post("/event", eventHand.CreateEvent)
 	api.Put("/event/:id", eventHand.UpdateEvent)
 	api.Delete("/event/:id", eventHand.DeleteEvent)
+
+	// users
+	api.Post("/user", userHand.CreateUser)
 
 	log.Fatal(app.Listen(":" + config.Env.App.Port))
 }
